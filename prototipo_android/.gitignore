@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.buildozer/
+deployment/
+build/
+dist/
+*.apk
+*.aab
+*.whl
+pysidedeploy.spec
+buildozer.spec
+qa/*.png
+qa/*.log

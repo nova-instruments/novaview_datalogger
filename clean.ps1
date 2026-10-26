@@ -1,35 +1,42 @@
-# Remove build artifacts, caches and local runtime data.
-# Source files are never touched.
+﻿# Remove apenas arquivos de trabalho gerados durante testes e compilacao.
+# Preserva executaveis, relatorios, bancos de dados, codigo e configuracoes.
+[CmdletBinding(SupportsShouldProcess = $true)]
+param()
+
 $ErrorActionPreference = 'Stop'
-Set-Location -Path $PSScriptRoot
+$projectRoot = [IO.Path]::GetFullPath($PSScriptRoot)
+$projectPrefix = $projectRoot.TrimEnd('\') + '\'
 
-$targets = @(
-    'build',
-    'dist',
-    '__pycache__',
-    '.runtime_home',
-    'temp',
-    '.agents',
-    '.codex',
-    'run_error.log',
-    'run_runtime.log',
-    'img\icon.ico',
-    'novaview_datalogger_logo.png'
-)
-
-foreach ($t in $targets) {
-    if (Test-Path $t) {
-        Remove-Item -Recurse -Force $t
-        Write-Host "removed  $t"
-    } else {
-        Write-Host "skip     $t (not present)"
+function Remove-GeneratedItem {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) { return }
+    $item = Get-Item -LiteralPath $Path -Force
+    $resolvedPath = [IO.Path]::GetFullPath($item.FullName)
+    if (-not $resolvedPath.StartsWith($projectPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Caminho fora da pasta do projeto: $resolvedPath"
+    }
+    if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+        Write-Warning "Atalho preservado: $resolvedPath"
+        return
+    }
+    if ($PSCmdlet.ShouldProcess($resolvedPath, 'Remover arquivo gerado')) {
+        try {
+            Remove-Item -LiteralPath $resolvedPath -Recurse -Force -ErrorAction Stop
+            Write-Host "Removido: $resolvedPath"
+        } catch {
+            Write-Warning "Nao foi possivel remover: $resolvedPath. $($_.Exception.Message)"
+        }
     }
 }
 
-# Stray SQLite databases dropped in the project root
-Get-ChildItem -File -Filter '*.db' | ForEach-Object {
-    Remove-Item -Force $_.FullName
-    Write-Host "removed  $($_.Name)"
+foreach ($relativePath in @('build', '__pycache__', 'tests\__pycache__')) {
+    Remove-GeneratedItem (Join-Path $projectRoot $relativePath)
 }
-
-Write-Host "`nDone."
+$temporaryPath = Join-Path $projectRoot 'temp'
+if (Test-Path -LiteralPath $temporaryPath) {
+    # Pastas _MEI podem pertencer ao programa em execucao.
+    Get-ChildItem -LiteralPath $temporaryPath -Force |
+        Where-Object { $_.Name -notlike '_MEI*' } |
+        ForEach-Object { Remove-GeneratedItem $_.FullName }
+}
+Write-Host 'Limpeza concluida. Dados e executaveis foram preservados.'

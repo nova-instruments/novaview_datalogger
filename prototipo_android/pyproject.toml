@@ -1,0 +1,11 @@
+[project]
+name = "novaview-android-prototype"
+version = "0.2.1"
+requires-python = ">=3.10"
+
+[tool.pyside6-project]
+files = [
+    "main.py", "controller.py", "datalogger.py",
+    "ui/Main.qml", "ui/TemperatureChart.qml", "ui/RecordTable.qml", "ui/DateTimePicker.qml",
+    "assets/logo.png", "assets/logo_header.png", "assets/icon.png",
+]

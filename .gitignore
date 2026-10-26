@@ -26,3 +26,14 @@ img/icon.ico
 .agents/
 .codex/
 .DS_Store
+
+# Local credentials and equipment reports
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+*.keystore
+*.jks
+/relatorio_*.pdf

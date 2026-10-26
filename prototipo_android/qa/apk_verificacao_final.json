@@ -1,0 +1,59 @@
+{
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): false\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: C=US, O=Android, CN=Android Debug\nSigner #1 certificate SHA-256 digest: 05ea338201f338f6c4514ca281155f8fc56cfa4876355f570e7a763e91d4d963\nSigner #1 certificate SHA-1 digest: 4cabdb0f4bfb025a4723e1339a2c1f002c3e82e2\nSigner #1 certificate MD5 digest: 2c700a4e31e381386ff606fe5786a1a9\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: d31b4a40aef82de21e6c9e2a72b2be9bd974c22632edd0844c8dc2af7360ceef\nSigner #1 public key SHA-1 digest: 8d782f2493207592695daab0d9ff79f6b55adc39\nSigner #1 public key MD5 digest: c59d4385c21f8f9d36f556582b786301\n",
+  "zip_alignment": "OK",
+  "manifest": "package: name='org.novaviewandroidprototype.novaviewandroidprototype' versionCode='10283' versionName='0.2.1' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'\ninstall-location:'auto'\nsdkVersion:'28'\ntargetSdkVersion:'35'\nuses-permission: name='android.permission.WRITE_EXTERNAL_STORAGE'\nuses-permission: name='android.permission.ACCESS_NETWORK_STATE'\nuses-permission: name='android.permission.INTERNET'\napplication-label:'NovaView Datalogger'\napplication-icon-160:'res/mipmap/icon.png'\napplication: label='NovaView Datalogger' icon='res/mipmap/icon.png'\napplication-debuggable\nlaunchable-activity: name='org.kivy.android.PythonActivity'  label='NovaView Datalogger' icon=''\nuses-permission: name='android.permission.READ_EXTERNAL_STORAGE'\nuses-implied-permission: name='android.permission.READ_EXTERNAL_STORAGE' reason='requested WRITE_EXTERNAL_STORAGE'\nfeature-group: label=''\n  uses-gl-es: '0x20000'\n  uses-feature: name='android.hardware.faketouch'\n  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'\nmain\nsupports-screens: 'small' 'normal' 'large' 'xlarge'\nsupports-any-density: 'true'\nlocales: '--_--'\ndensities: '160'\nnative-code: 'arm64-v8a'\n",
+  "apk": "/mnt/c/Users/dev/Desktop/novaiot_datalogger/prototipo_android/dist/NovaView-Android-ARM64.apk",
+  "bytes": 171125794,
+  "sha256": "d2c3c3a10bad07f8f8dd6da6320d8a14629c5968b44834d6a2110155dd3c188e",
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "native_libraries": 633,
+  "elf_16kb_alignment": "OK",
+  "libraries_without_16kb_alignment": [],
+  "relro_16kb_writable_overlap": [],
+  "demonstrations_included": false,
+  "physical_tablet_test": "Pendente",
+  "android_java_extraction": [
+    {
+      "archive": "libpybundle.so",
+      "result": "Extracted entries: 3883"
+    },
+    {
+      "archive": "private.tar",
+      "result": "Extracted entries: 21"
+    }
+  ],
+  "android_activity_result_dispatch": "OK: selection, cancellation, repeated requests and existing listeners",
+  "application": {
+    "version": "0.2.1",
+    "version_code": 10283,
+    "source_sha256": "4a06dba95e8a431139fa01b6b48f8154968b78aa1f258f66aef3f24942d44eff",
+    "files": [
+      "assets/icon.png",
+      "assets/logo.png",
+      "assets/logo_header.png",
+      "controller.py",
+      "datalogger.py",
+      "main.py",
+      "ui/DateTimePicker.qml",
+      "ui/Main.qml",
+      "ui/RecordTable.qml",
+      "ui/TemperatureChart.qml"
+    ],
+    "reports": false
+  },
+  "rebuilt_module": {
+    "source": "https://raw.githubusercontent.com/pyside/pyside-setup/v6.12.0/sources/shiboken6/shibokenmodule/",
+    "version": "6.12.0",
+    "module": "/home/nova/novaview-android-prototype-build/shiboken-16kb/Shiboken.abi3.so",
+    "alignment": [
+      16384,
+      16384,
+      16384,
+      16384
+    ],
+    "compiler": "/home/nova/novaview-android-prototype-build/android-sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang++",
+    "note": "Código oficial sem alteração funcional; módulo recompilado com max/common page size de 16 KB."
+  }
+}

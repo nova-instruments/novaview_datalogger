@@ -1,0 +1,20 @@
+﻿{
+    "version":  "0.2.0",
+    "unit_tests_passed":  28,
+    "packaged_source_files_verified":  12,
+    "apk_sha256":  "d9c714b21cb5cc4f5b16b52f4f806f32f1ffd21fc9e0b60d61d35b953f697e87",
+    "windows_validated_files_unchanged":  true,
+    "android_java_extraction":  [
+                                    {
+                                        "archive":  "libpybundle.so",
+                                        "result":  "Extracted entries: 3883"
+                                    },
+                                    {
+                                        "archive":  "private.tar",
+                                        "result":  "Extracted entries: 24"
+                                    }
+                                ],
+    "android_activity_result_dispatch":  "OK: selection, cancellation, repeated requests and existing listeners",
+    "tablet_previous_version":  "Abertura, pendrive e comparação com Windows confirmados pelo usuário.",
+    "tablet_version_0_2_0":  "Pendente de conferência das novas abas e filtros no aparelho."
+}

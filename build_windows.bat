@@ -6,12 +6,14 @@ cd /d "%~dp0"
 set "PY_CMD="
 
 echo ========================================
-echo NOVAIOT Datalogger - Build Windows EXE
+echo novaview_datalogger_v1 - Build Windows EXE
 echo ========================================
 echo.
 
 where py >nul 2>&1
 if not errorlevel 1 set "PY_CMD=py"
+
+if exist ".venv\Scripts\python.exe" set "PY_CMD=.venv\Scripts\python.exe"
 
 if not defined PY_CMD (
   where python >nul 2>&1
@@ -41,8 +43,8 @@ if not exist "run_app.py" (
   exit /b 1
 )
 
-if not exist "novaview_datalogger.exe.spec" (
-  echo [ERRO] novaview_datalogger.exe.spec nao encontrado nesta pasta.
+if not exist "novaview_datalogger_v1.exe.spec" (
+  echo [ERRO] novaview_datalogger_v1.exe.spec nao encontrado nesta pasta.
   exit /b 1
 )
 
@@ -60,17 +62,15 @@ echo [2/4] Gerando icone ICO a partir do logo PNG...
 %PY_CMD% -c "from PIL import Image; i=Image.open('img/icon_transparent.png').convert('RGBA'); i.save('img/icon.ico', sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(24,24),(16,16)]); print('icone gerado: img/icon.ico')"
 if errorlevel 1 goto :fail
 
-echo [3/4] Limpando builds anteriores...
-if exist build rmdir /s /q build
-if exist dist rmdir /s /q dist
+echo [3/4] Preparando build desktop...
 
 echo [4/4] Gerando EXE com PyInstaller...
-%PY_CMD% -m PyInstaller novaview_datalogger.exe.spec
+%PY_CMD% -m PyInstaller --noconfirm --clean novaview_datalogger_v1.exe.spec
 if errorlevel 1 goto :fail
 
 echo.
 echo Build concluido com sucesso!
-echo Arquivo gerado em: dist\novaview_datalogger.exe
+echo Arquivo gerado em: dist\novaview_datalogger_v1.exe
 exit /b 0
 
 :fail
